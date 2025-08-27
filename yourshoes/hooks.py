@@ -242,3 +242,11 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+#after_install = "yourshoes.custom_fields.after_install"
+# Export only this custom DocType definition (incl. its child fields & perms)
+fixtures = [
+    {"dt": "DocType", "filters": [["name", "=", "Material Sole"]]},
+    {"dt": "DocType", "filters": [["name", "=", "Color Master"]]},
+    {"dt": "DocType", "filters": [["name", "=", "Category Master"]]},
+]
+
