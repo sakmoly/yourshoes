@@ -114,3 +114,18 @@ def validate_item_group(doc, method=None):
     # keep ONLY the full path code unique (allow same sub-code under different parents)
     if full and frappe.db.exists("Item Group", {"name": ["!=", doc.name], "full_group_code": full}):
         frappe.throw(f"Full Group Code '{full}' already exists. Choose a different Group Code.")
+
+def validate_item_subgroup(doc, method=None):
+    # Only check when both fields are set
+    parent = doc.get("item_group")
+    child  = doc.get("sub_item_group")
+    if not (parent and child):
+        return
+
+    # Support deep hierarchy using nested set (lft/rgt)
+    pl, pr = frappe.db.get_value("Item Group", parent, ["lft", "rgt"])
+    cl, cr = frappe.db.get_value("Item Group", child,  ["lft", "rgt"])
+
+    # Ensure child sits anywhere inside the parent subtree
+    if not (pl and pr and cl and cr and (pl < cl < cr < pr)):
+        frappe.throw(f"Sub Group '{child}' must be under the selected Group '{parent}'.")

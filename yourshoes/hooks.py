@@ -281,3 +281,16 @@ fixtures = [
 app_include_css = "public/css/item_group_tree.css"
 app_include_js = "public/js/item_group_tree_label.js"
 
+# Load Item form JS from your app
+doctype_js = {
+    "Item": "your_shoes/doctype/item/item.js"
+}
+
+# Server validation for Item
+doc_events = {
+    "Item": {
+        "validate": "yourshoes.your_shoes.item_hooks.validate_item_subgroup"
+    }
+}
+
+
