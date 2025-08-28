@@ -251,6 +251,8 @@ fixtures = [
 ]
 
 
+
+
 # load your JS on Item Group form
 doctype_js = {
     "Item Group": "your_shoes/doctype/item_group/item_group.js"
@@ -261,6 +263,7 @@ doc_events = {
     "Item Group": {
         "before_insert": "yourshoes.your_shoes.item_group_hooks.before_insert_item_group",
         "validate": "yourshoes.your_shoes.item_group_hooks.validate_item_group",
+
     }
 }
 
