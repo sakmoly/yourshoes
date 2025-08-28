@@ -250,3 +250,31 @@ fixtures = [
     {"dt": "DocType", "filters": [["name", "=", "Category Master"]]},
 ]
 
+
+# load your JS on Item Group form
+doctype_js = {
+    "Item Group": "your_shoes/doctype/item_group/item_group.js"
+}
+
+# server events
+doc_events = {
+    "Item Group": {
+        "before_insert": "yourshoes.your_shoes.item_group_hooks.before_insert_item_group",
+        "validate": "yourshoes.your_shoes.item_group_hooks.validate_item_group",
+    }
+}
+
+# (optional) ship the fields as fixtures after you create them once
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [["dt","=","Item Group"],
+                    ["fieldname","in",["group_code","full_group_code","combined_code_name"]]]
+    }
+]
+
+
+
+app_include_css = "public/css/item_group_tree.css"
+app_include_js = "public/js/item_group_tree_label.js"
+

@@ -1,0 +1,4 @@
+/* Hide the default "(docname)" tail in Item Group Tree only */
+body[data-route="Tree/Item Group"] .tree-label .text-muted {
+  display: none !important;
+}
